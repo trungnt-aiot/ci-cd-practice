@@ -12,7 +12,10 @@ describe('Page', () => {
     render(<Page />);
     const image = screen.getByAltText('Profile');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/profile.png');
+    expect(image).toHaveAttribute(
+      'src',
+      'https://avatars.githubusercontent.com/u/83105598?v=4'
+    );
     expect(image).toHaveAttribute('width', '100');
     expect(image).toHaveAttribute('height', '100');
   });
