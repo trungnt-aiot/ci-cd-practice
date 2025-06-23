@@ -223,43 +223,43 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run linting
-      run: npm run lint
-    
-    - name: Run tests
-      run: npm test
-    
-    - name: Build
-      run: npm run build
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
 ```
 
 - explain command:
 
 ```yml
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+push:
+  branches: [main, develop]
+pull_request:
+  branches: [main, develop]
 ```
 
 - use `push` and `pull_request` to listen in `main` and `develop` branch
@@ -270,36 +270,39 @@ jobs:
 - to setup environment, we use:
 
 ```yml
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
+- name: Setup Node.js
+  uses: actions/setup-node@v3
+  with:
+    node-version: '18'
+    cache: 'npm'
 ```
 
 - to install dependencies, we use:
 
 ```yml
-    - name: Install dependencies
-      run: npm ci
+- name: Install dependencies
+  run: npm ci
 ```
+
 - to run linting, we use:
 
 ```yml
-    - name: Run linting
-      run: npm run lint
+- name: Run linting
+  run: npm run lint
 ```
+
 - to run tests, we use:
 
 ```yml
-    - name: Run tests
-      run: npm test
+- name: Run tests
+  run: npm test
 ```
+
 - to build the project, we use:
 
 ```yml
-    - name: Build
-      run: npm run build
+- name: Build
+  run: npm run build
 ```
 
 ### DEMO CI
@@ -317,18 +320,20 @@ git push origin develop
 - results:
 
 - after pushing the code, we can see the workflow running pull request layout
-![pull request layout](image.png)
+  ![pull request layout](image.png)
 
 - we can see the detail process of the workflow in the `Actions` tab
-![detail process ci](image-1.png)
+  ![detail process ci](image-1.png)
 
 - if the workflow is successful, we can see the result in the `Actions` tab
-![ci successful](image-2.png)
+  ![ci successful](image-2.png)
 
 => github action will test automatically when we push code to `main` or `develop` branch
+
 - it will validate the code, format code, run tests, and build the project
 
 #### FAILED CASE
+
 - to test the failed case, we can change the code in `src/app/components/UserProfile.tsx` file
 
 ```tsx
@@ -370,7 +375,7 @@ export default function UserProfile({
 - results:
 
 - we can see the error in pull request layout
-![error in testing](image-3.png)
+  ![error in testing](image-3.png)
 
 - we can see the detail error in the `Actions` tab
 
@@ -387,7 +392,7 @@ name: Deploy Next.js site to Pages
 
 on:
   push:
-    branches: ["production"]
+    branches: ['production']
 
   workflow_dispatch:
 
@@ -397,7 +402,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -426,7 +431,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
