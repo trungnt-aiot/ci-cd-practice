@@ -1,6 +1,10 @@
 import Image from 'next/image';
 
 export default function Page() {
+  const a = 10;
+
+  console.log(a);
+
   return (
     <>
       <h1>Welcome to My Profile.</h1>
