@@ -1,9 +1,12 @@
 import Image from 'next/image';
 
 export default function Page() {
-  const a = 10;
+  let a =               10;
 
-  console.log(a);
+
+
+
+
 
   return (
     <>
